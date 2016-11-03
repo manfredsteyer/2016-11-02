@@ -1,6 +1,8 @@
 import { Injectable, Inject} from '@angular/core';
 import {Http, Headers, URLSearchParams} from '@angular/http';
 import {BASE_URL} from "../../app.tokens";
+import {Observable} from "rxjs";
+import {Flight} from "../../entities/flight";
 
 @Injectable()
 export class FlightService {
@@ -11,7 +13,7 @@ export class FlightService {
      ) {
      }
 
-     find(from: string, to: string) {
+     find(from: string, to: string): Observable<Flight[]> {
          let url = this.baseUrl + "/api/flight";
          let headers = new Headers();
          headers.set('Accept', 'text/json');

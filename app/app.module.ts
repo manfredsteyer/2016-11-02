@@ -6,12 +6,15 @@ import {FormsModule} from "@angular/forms";
 import {FlightSearchComponent} from "./flight-booking/flight-search/flight-search.component";
 import {FlightService} from "./flight-booking/services/flight.service";
 import {BASE_URL} from "./app.tokens";
+import {CityPipe} from "./shared/pipes/city.pipe";
+import {SharedModule} from "./shared/shared.module";
 
 @NgModule({
     imports: [
         BrowserModule,
         HttpModule,
-        FormsModule
+        FormsModule,
+        SharedModule
     ],
     declarations: [
         AppComponent,
