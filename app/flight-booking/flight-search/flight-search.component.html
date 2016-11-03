@@ -21,6 +21,7 @@
 <!--
 [ngClass]="{ 'active': f == selectedFlight }"
 -->
+<!--
 <table class="table table-striped">
 
     <tr *ngFor="let f of flights" [ngStyle]="{ 'background-color': (f == selectedFlight) ? 'orange': '' } ">
@@ -31,8 +32,30 @@
         <td><a (click)="select(f)">Auswählen</a></td>
     </tr>
 </table>
+-->
 
+<div class="row">
+    <div *ngFor="let f of flights" class="col-sm-6 col-md-4 col-lg-3 ">
+        <flight-card [item]="f"
+                     [(selectedItem)]="selectedFlight">
+        </flight-card>
+
+        <!--
+        [selectedItem]="selectedFlight"
+                     (selectedItemChange)="selectedFlight = $event"
+        -->
+
+        <alt-flight-card
+                [item]="f"
+                [selected]="f == selectedFlight"
+                (selectedChange)="selectedFlight = f">
+        </alt-flight-card>
+
+    </div>
+</div>
+<div class="row" style="margin-top:40px">
 <pre>Warenkorb
 ----------------------
 {{selectedFlight | json}}
 </pre>
+</div>
