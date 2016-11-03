@@ -1,6 +1,15 @@
 <h1>Flight Search!</h1>
 
-<form #f="ngForm" novalidate>
+<!--
+round-trip
+-->
+
+<form #f="ngForm" novalidate round-trip>
+
+    <div *ngIf="f?.control?.hasError('round-trip')">
+        Rund-Flüge sind nicht möglich.
+    </div>
+
 
     <div class="form-group">
         <label>From</label>
@@ -11,14 +20,28 @@
                minlength="3"
                maxlength="30"
                city="Hamburg,Wien,Graz,Frankfurt,Luxemburg,Luxembourg"
+               async-city
                pattern="[a-zA-ZöäüßÖÄÜ]+">
 
-        <div *ngIf="!f?.controls?.from?.valid">
+        <div *ngIf="!f?.controls?.from?.valid && !f?.controls?.from?.pending ">
             Validierungsfehler. Bitte prüfen Sie Ihre Eingaben.
             <pre>
-            {{ f.controls.from.errors | json }}
+            {{ f.controls.from?.errors | json }}
             </pre>
         </div>
+
+        <div *ngIf="f?.controls?.from?.hasError('async-city')">
+            Async-City: Die Stadt wird gerade wegen eines Unwetters nicht angeflogen.
+        </div>
+
+
+
+        <div *ngIf="f?.controls?.from?.pending">
+            <marquee>
+                Validierung wird ausgeführt. Bitte etwas warten!
+            </marquee>
+        </div>
+
 
         <div *ngIf="f?.controls?.from?.hasError('required')">
             Dieses Feld ist ein Pflichtfeld.
@@ -46,7 +69,7 @@
         <button
                 class="btn btn-primary"
                 name="btnSearch"
-                [disabled]="!from || !to"
+                [disabled]="!f.valid"
                 (click)="search()">Search</button>
     </div>
 

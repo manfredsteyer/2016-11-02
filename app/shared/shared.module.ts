@@ -3,6 +3,9 @@ import {FormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import {CityPipe} from "./pipes/city.pipe";
 import {CityValidatorDirective} from "./validation/city.validator";
+import {RoundTrip} from "./validation/roundtrip.validator";
+import {AsyncCityValidatorDirective} from "./validation/async-city.validator";
+import {DateComponent} from "./date/date.component";
 
 @NgModule({
     imports: [
@@ -14,11 +17,17 @@ import {CityValidatorDirective} from "./validation/city.validator";
     ],
     declarations: [
         CityPipe,
-        CityValidatorDirective
+        CityValidatorDirective,
+        AsyncCityValidatorDirective,
+        RoundTrip,
+        DateComponent
     ],
     exports:[
         CityPipe,
-        CityValidatorDirective
+        CityValidatorDirective,
+        AsyncCityValidatorDirective,
+        RoundTrip,
+        DateComponent
     ]
 })
 export class SharedModule {

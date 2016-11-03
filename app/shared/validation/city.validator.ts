@@ -1,6 +1,6 @@
 
 import {Directive, Input, Attribute} from "@angular/core";
-import {NG_VALIDATORS, Validator, AbstractControl} from "@angular/forms";
+import {NG_VALIDATORS, Validator, AbstractControl, FormGroup} from "@angular/forms";
 
 @Directive({
     selector: 'input[city]', // <input city>
@@ -21,6 +21,19 @@ export class CityValidatorDirective implements Validator {
 
     validate(c: AbstractControl): any {
 
+
+        let formGroup = <FormGroup>c.root;
+        let otherValueCtrl = formGroup.controls['to'];
+
+        if (!otherValueCtrl) return { };
+
+        let otherValue = otherValueCtrl.value;
+
+        if(otherValue == c.value) {
+            return {
+                city: 'rundflug'
+            }
+        }
 
         if (!this.city) return { }
 
