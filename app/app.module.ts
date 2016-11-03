@@ -10,6 +10,7 @@ import {CityPipe} from "./shared/pipes/city.pipe";
 import {SharedModule} from "./shared/shared.module";
 import {FlightCardComponent} from "./flight-booking/flight-card/flight.card.component";
 import {AltFlightCardComponent} from "./flight-booking/alt-flight-card/alt-flight.card.component";
+import {FlightListComponent} from "./flight-booking/alt-flight-card/flight-list";
 
 @NgModule({
     imports: [
@@ -22,7 +23,8 @@ import {AltFlightCardComponent} from "./flight-booking/alt-flight-card/alt-fligh
         AppComponent,
         FlightSearchComponent,
         FlightCardComponent,
-        AltFlightCardComponent
+        AltFlightCardComponent,
+        FlightListComponent
     ],
     providers: [
         { provide: BASE_URL, useValue: "http://www.angular.at"}
