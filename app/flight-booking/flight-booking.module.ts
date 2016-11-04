@@ -10,6 +10,8 @@ import {CommonModule} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SharedModule} from "../shared/shared.module";
 import {FlightBookingRouterModule} from "./flight-booking.routes";
+import {FlightBookingComponent} from "./flight-booking.component";
+import {FlightService} from "./services/flight.service";
 
 @NgModule({
     imports: [
@@ -26,9 +28,11 @@ import {FlightBookingRouterModule} from "./flight-booking.routes";
         FlightListComponent,
         FlightSearchReactiveComponent,
         PassengerSearchComponent,
-        FlightEditComponent
+        FlightEditComponent,
+        FlightBookingComponent
     ],
     providers: [
+        FlightService
     ],
     exports: [
     ]

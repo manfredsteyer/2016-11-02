@@ -6,17 +6,20 @@ import {FlightService} from "../services/flight.service";
 @Component({
     selector: 'flight-search',
     templateUrl: './flight-search.component.html',
-    providers: [FlightService],
     styleUrls: ['./flight-search.component.css']
 })
 export class FlightSearchComponent {
 
     public from: string = "Hamburg";
     public to: string = "Graz";
-    public flights: Array<Flight> = [];
     public selectedFlight: Flight;
 
     constructor(private flightService: FlightService) {
+    }
+
+    // cmp.flights
+    public get flights() {
+        return this.flightService.flights;
     }
 
     public select(f: Flight): void {
@@ -26,17 +29,7 @@ export class FlightSearchComponent {
     public search(): void {
 
         this.flightService
-            .find(this.from, this.to)
-            .subscribe(
-                (flights: Array<Flight>) => {
-                    this.flights = flights;
-                },
-                (err) => {
-                    console.error(err);
-                }
-            );
-
-
+            .find(this.from, this.to);
 
             // .map(function(resp) { return resp.json() })
 

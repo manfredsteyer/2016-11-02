@@ -13,7 +13,9 @@ export class FlightService {
      ) {
      }
 
-     find(from: string, to: string): Observable<Flight[]> {
+     public flights: Array<Flight> = [];
+
+     find(from: string, to: string): void {
          let url = this.baseUrl + "/api/flight";
          let headers = new Headers();
          headers.set('Accept', 'text/json');
@@ -22,10 +24,14 @@ export class FlightService {
          search.set('from', from);
          search.set('to', to);
 
-         return this
-                 .http
-                 .get(url, {headers, search})
-                 .map(resp => resp.json())
+         this
+             .http
+             .get(url, {headers, search})
+             .map(resp => resp.json())
+             .subscribe(
+                 (flights) => { this.flights = flights; },
+                 (err) => { console.warn(err); }
+             );
      }
 
 }
