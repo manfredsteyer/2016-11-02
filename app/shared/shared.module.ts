@@ -6,6 +6,9 @@ import {CityValidatorDirective} from "./validation/city.validator";
 import {RoundTrip} from "./validation/roundtrip.validator";
 import {AsyncCityValidatorDirective} from "./validation/async-city.validator";
 import {DateComponent} from "./date/date.component";
+import {AuthGuard} from "./auth/auth.guard";
+import {LeaveComponentGuard} from "./deactivation/LeaveComponentGuard";
+import {CustomPreloadingStrategy} from "./preload/custom-preloading.strategy";
 
 @NgModule({
     imports: [
@@ -13,7 +16,9 @@ import {DateComponent} from "./date/date.component";
         CommonModule // ngFor, ngIf, ngStyle, ngClass, date, json
     ],
     providers: [
-        // Keine
+        AuthGuard,
+        LeaveComponentGuard,
+        CustomPreloadingStrategy
     ],
     declarations: [
         CityPipe,

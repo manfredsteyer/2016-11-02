@@ -73,15 +73,7 @@ export class FlightSearchReactiveComponent {
         var value = this.filter.value;
 
         this.flightService
-            .find(value.from, value.to)
-            .subscribe(
-                (flights: Array<Flight>) => {
-                    this.flights = flights;
-                },
-                (err) => {
-                    console.error(err);
-                }
-            );
+            .find(value.from, value.to);
 
 
 

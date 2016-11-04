@@ -7,7 +7,7 @@ import {BASE_URL} from "./app.tokens";
 import {SharedModule} from "./shared/shared.module";
 import {AppRouterModule} from "./app.routes";
 import {HomeComponent} from "./home/home.component";
-import {FlightBookingModule} from "./flight-booking/flight-booking.module";
+import {FlightHistoryComponent} from "./flight-history/flight-history.component";
 
 @NgModule({
     imports: [
@@ -16,12 +16,12 @@ import {FlightBookingModule} from "./flight-booking/flight-booking.module";
         FormsModule,
         ReactiveFormsModule,
         SharedModule,
-        AppRouterModule,
-        FlightBookingModule
+        AppRouterModule
     ],
     declarations: [
         AppComponent,
         HomeComponent,
+        FlightHistoryComponent
     ],
     providers: [
         { provide: BASE_URL, useValue: "http://www.angular.at"}
