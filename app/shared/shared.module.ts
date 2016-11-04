@@ -1,4 +1,4 @@
-import {NgModule} from "@angular/core";
+import {NgModule, ModuleWithProviders} from "@angular/core";
 import {FormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import {CityPipe} from "./pipes/city.pipe";
@@ -9,6 +9,7 @@ import {DateComponent} from "./date/date.component";
 import {AuthGuard} from "./auth/auth.guard";
 import {LeaveComponentGuard} from "./deactivation/LeaveComponentGuard";
 import {CustomPreloadingStrategy} from "./preload/custom-preloading.strategy";
+import { OAuthService } from 'angular2-oauth2/oauth-service';
 
 @NgModule({
     imports: [
@@ -16,9 +17,6 @@ import {CustomPreloadingStrategy} from "./preload/custom-preloading.strategy";
         CommonModule // ngFor, ngIf, ngStyle, ngClass, date, json
     ],
     providers: [
-        AuthGuard,
-        LeaveComponentGuard,
-        CustomPreloadingStrategy
     ],
     declarations: [
         CityPipe,
@@ -36,5 +34,15 @@ import {CustomPreloadingStrategy} from "./preload/custom-preloading.strategy";
     ]
 })
 export class SharedModule {
-
+    static forRoot(): ModuleWithProviders {
+        return {
+            providers: [
+                OAuthService,
+                AuthGuard,
+                LeaveComponentGuard,
+                CustomPreloadingStrategy
+            ],
+            ngModule: SharedModule
+        };
+    }
 }

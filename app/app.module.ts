@@ -15,7 +15,7 @@ import {FlightHistoryComponent} from "./flight-history/flight-history.component"
         HttpModule,
         FormsModule,
         ReactiveFormsModule,
-        SharedModule,
+        SharedModule.forRoot(),
         AppRouterModule
     ],
     declarations: [
