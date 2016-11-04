@@ -1,6 +1,6 @@
-
 import {Directive} from "@angular/core";
 import {FormGroup, Validator, AbstractControl, NG_VALIDATORS, FormGroupDirective} from "@angular/forms";
+
 @Directive({
     selector: 'form[round-trip]',
     providers: [{ provide: NG_VALIDATORS, useExisting: RoundTrip, multi: true  }]

@@ -25,7 +25,7 @@ export class AsyncCityValidatorDirective {
 
                 resolve({ 'async-city': false});
 
-            }, 4000);
+            }, 100);
         })
 
     }

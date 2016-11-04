@@ -2,11 +2,10 @@ var webpack = require('webpack');
 
 var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 
-// CommonJs für export von EcmaScript6
 module.exports = {
-    debug: true,
     devtool: 'source-map',
     entry: {
+        // 'tests': ['./app/tests'],
         'vendor': ['./app/polyfills', './app/vendor'],
         'app': './app/main'
     },
@@ -16,19 +15,19 @@ module.exports = {
         publicPath: "dist/"
     },
     resolve: {
-        extensions: ['', '.ts', '.js', '.jpg', '.jpeg', '.gif', '.png', '.css']
+        extensions: ['.ts', '.js', '.jpg', '.jpeg', '.gif', '.png', '.css', '.html']
     },
     module: {
         loaders: [
             { test: /\.(jpg|jpeg|gif|png)$/, loader:'file-loader?name=img/[path][name].[ext]' },
+            { test: /\.(eof|woff|woff2|svg)$/, loader:'file-loader?name=img/[path][name].[ext]' },
             { test: /\.css$/, loader:'raw-loader' },
             { test: /\.html$/,  loaders: ['html-loader'] },
-            { test: /\.ts$/, loaders: ['angular2-template-loader', 'awesome-typescript-loader'], exclude: /node_modules/}
+            { test: /\.ts$/, loaders: ['angular2-router-loader?loader=system', 'angular2-template-loader', 'awesome-typescript-loader'], exclude: /node_modules/}
         ]
     },
-    modulesDirectories: ['node_modules'],
     plugins: [
-        new CommonsChunkPlugin({ name: 'vendor' })
+        new CommonsChunkPlugin({ name: 'vendor'})
     ],
     node: {
         __filename: true
@@ -42,5 +41,5 @@ module.exports = {
             poll: 1000
         }
     }
-  
+
 };
